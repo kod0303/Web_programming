@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.4">
+  <display-name>TestServlet</display-name>
+  
+  <welcome-file-list>
+  	<welcome-file>MusiciansTitle.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+    <servlet-name>Musicians</servlet-name>
+    <servlet-class>Musicians</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>ExperienceProcessor</display-name>
+  	<servlet-name>ExperienceProcessor</servlet-name>
+  	<servlet-class>lab.web.ExperienceProcessor</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Musicians</servlet-name>
+    <url-pattern>/MusiciansList</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ExperienceProcessor</servlet-name>
+  	<url-pattern>/ExperienceProcessor</url-pattern>
+  </servlet-mapping>
+  
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/404Error.jsp</location>
+  </error-page>
+  <error-page>
+  	<exception-type>java.lang.NumberFormatException</exception-type>
+  	<location>/ExperienceError.jsp</location>
+  </error-page>
+  
+  	<security-role> 
+        <role-name>admin</role-name>
+    </security-role> 
+    <security-role> 
+        <role-name>user</role-name>
+    </security-role> 
+  	<!-- Описание защищаемых ресурсов -->
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Список музыкантов</web-resource-name>
+			<url-pattern>/MusiciansTitle.jsp</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>admin</role-name>
+			<role-name>user</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<!-- Определение вида аутентификации -->
+	<login-config>
+		<auth-method>BASIC</auth-method>
+		<realm-name>Write Musicians List</realm-name>
+	</login-config>	
+  
+</web-app>
