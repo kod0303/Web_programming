@@ -1,0 +1,25 @@
+-------------------------------------------------------------------------------
+Test set: lab.web.LabServletTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.513 s <<< FAILURE! - in lab.web.LabServletTest
+test(lab.web.LabServletTest)  Time elapsed: 0.489 s  <<< FAILURE!
+org.mockito.exceptions.verification.WantedButNotInvoked: 
+
+Wanted but not invoked:
+response1.encodeRedirectURL(
+    "null/ExperienceError.jsp"
+);
+-> at lab.web.LabServletTest.test(LabServletTest.java:59)
+
+However, there were exactly 2 interactions with this mock:
+response1.setContentType(
+    "text/html; charset=UTF-8"
+);
+-> at lab.web.ExperienceProcessor.doGet(ExperienceProcessor.java:40)
+
+response1.getWriter();
+-> at lab.web.ExperienceProcessor.doGet(ExperienceProcessor.java:67)
+
+
+	at lab.web.LabServletTest.test(LabServletTest.java:59)
+
